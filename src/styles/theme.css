@@ -1,27 +1,31 @@
+/* =========================================
+   NEXCART - GLOBAL THEME CONFIGURATION
+========================================= */
+
 :root {
   /* Brand colors */
-  --nc-primary: #00B8DB;
-  --nc-primary-hover: #0092B8;
-  --nc-primary-soft: #E0F8FC;
+  --nc-primary: #00b8db;
+  --nc-primary-hover: #0092b8;
+  --nc-primary-soft: #e0f8fc;
 
   /* Main light theme */
-  --nc-page: #F8FAFC;
-  --nc-card: #F7FCFF;
-  --nc-border: #E2E8F0;
-  --nc-text: #0F172B;
-  --nc-text-muted: #585C63;
+  --nc-page: #f8fafc;
+  --nc-card: #f7fcff;
+  --nc-border: #e2e8f0;
+  --nc-text: #0f172b;
+  --nc-text-muted: #585c63;
 
   /* Dark theme */
-  --nc-dark-navbar: #0F1729;
-  --nc-dark-card: #1A2338;
-  --nc-dark-border: #2A3550;
-  --nc-dark-muted: #8B95A8;
-  --nc-dark-page: #0B1120;
+  --nc-dark-navbar: #0f1729;
+  --nc-dark-card: #1a2338;
+  --nc-dark-border: #2a3550;
+  --nc-dark-muted: #8b95a8;
+  --nc-dark-page: #0b1120;
 
   /* Status colors */
-  --nc-success: #00C950;
-  --nc-pending: #F0B100;
-  --nc-error: #FB2C36;
+  --nc-success: #00c950;
+  --nc-pending: #f0b100;
+  --nc-error: #fb2c36;
 
   /* Typography */
   --nc-font: "Roboto", sans-serif;
@@ -40,11 +44,64 @@
   --nc-transition: 200ms ease;
 }
 
+/* =========================================
+   GLOBAL THEME SYSTEM
+========================================= */
+
+/* Light theme - Default */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --nc-page-bg: var(--nc-page);
+  --nc-surface: var(--nc-card);
+  --nc-border-color: var(--nc-border);
+  --nc-text-primary: var(--nc-text);
+  --nc-text-secondary: var(--nc-text-muted);
+  --nc-navbar-bg: #ffffff;
+  --nc-hover-bg: #f1f5f9;
+
+  --nc-input-bg: #ffffff;
+  --nc-input-text: var(--nc-text);
+  --nc-input-placeholder: #94a3b8;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --nc-page-bg: var(--nc-dark-page);
+  --nc-surface: var(--nc-dark-card);
+  --nc-border-color: var(--nc-dark-border);
+  --nc-text-primary: #f8fafc;
+  --nc-text-secondary: var(--nc-dark-muted);
+  --nc-navbar-bg: var(--nc-dark-navbar);
+  --nc-hover-bg: #253149;
+
+  --nc-input-bg: var(--nc-dark-navbar);
+  --nc-input-text: #f8fafc;
+  --nc-input-placeholder: #8b95a8;
+}
+
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
 /* Consistent box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* Global layout */
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
 }
 
 /* Global typography */
@@ -54,34 +111,67 @@ html {
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
+  padding: 0;
   font-family: var(--nc-font);
-  background: var(--nc-page);
-  color: var(--nc-text);
+  background: var(--nc-page-bg);
+  color: var(--nc-text-primary);
   -webkit-font-smoothing: antialiased;
+
+  transition:
+    background-color var(--nc-transition),
+    color var(--nc-transition);
 }
 
-/* Shared components for pages using normal CSS */
+/* Root application */
+#root {
+  max-width: none;
+  text-align: left;
+  background: var(--nc-page-bg);
+  color: var(--nc-text-primary);
+
+  transition:
+    background-color var(--nc-transition),
+    color var(--nc-transition);
+}
+
+/* =========================================
+   SHARED COMPONENTS
+========================================= */
+
+/* Shared card */
 .nc-card {
-  background: var(--nc-card);
-  border: 1px solid var(--nc-border);
+  background: var(--nc-surface);
+  border: 1px solid var(--nc-border-color);
   border-radius: var(--nc-radius-lg);
   box-shadow: var(--nc-shadow-card);
+  transition:
+    background-color var(--nc-transition),
+    border-color var(--nc-transition),
+    box-shadow var(--nc-transition);
 }
 
+.nc-card:hover {
+  box-shadow: var(--nc-shadow-hover);
+}
+
+/* Primary button */
 .nc-button-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+
   padding: 12px 18px;
+
   border: 0;
   border-radius: var(--nc-radius-md);
+
   background: var(--nc-primary);
   color: var(--nc-dark-navbar);
+
   font: 500 14px var(--nc-font);
   cursor: pointer;
+
   transition:
     background var(--nc-transition),
     transform var(--nc-transition),
@@ -93,19 +183,31 @@ body {
   transform: translateY(-1px);
 }
 
+/* Shared input */
 .nc-input {
   width: 100%;
   min-height: 44px;
+
   padding: 10px 12px;
-  border: 1px solid var(--nc-border);
+
+  border: 1px solid var(--nc-border-color);
   border-radius: var(--nc-radius-md);
-  background: white;
-  color: var(--nc-text);
+
+  background: var(--nc-input-bg);
+  color: var(--nc-input-text);
+
   font: 400 14px var(--nc-font);
   outline: none;
+
   transition:
+    background-color var(--nc-transition),
+    color var(--nc-transition),
     border-color var(--nc-transition),
     box-shadow var(--nc-transition);
+}
+
+.nc-input::placeholder {
+  color: var(--nc-input-placeholder);
 }
 
 .nc-input:focus {
@@ -113,9 +215,14 @@ body {
   box-shadow: 0 0 0 3px rgb(0 184 219 / 15%);
 }
 
+/* Muted text */
 .nc-muted {
-  color: var(--nc-text-muted);
+  color: var(--nc-text-secondary);
 }
+
+/* =========================================
+   STATUS COLORS
+========================================= */
 
 .nc-status-success {
   color: var(--nc-success);
@@ -129,29 +236,18 @@ body {
   color: var(--nc-error);
 }
 
+/* =========================================
+   GLOBAL TRANSITIONS
+========================================= */
 
-/* Global layout reset for NexCart */
-
-html,
-body,
-#root {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
-html {
-  font-family: var(--nc-font);
-}
-
-body {
-  padding: 0;
-}
-
-/* Let each page control its own layout */
-#root {
-  max-width: none;
-  text-align: left;
-  
+::selection {
+  background: rgb(0 184 219 / 25%);
+  color: var(--nc-text-primary);
 }
