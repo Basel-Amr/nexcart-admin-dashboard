@@ -1,9 +1,11 @@
-import React from 'react'
+import ComingSoon from "../components/common/ComingSoon";
 
-function Products() {
+export default function Products() {
   return (
-    <div>Products</div>
-  )
+    <ComingSoon
+      title="Products"
+      icon="fa-solid fa-box-open"
+      description="Manage your store inventory, product details, prices, categories, and stock levels. Product management is coming soon."
+    />
+  );
 }
-
-export default Products
