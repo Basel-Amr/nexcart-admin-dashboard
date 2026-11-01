@@ -1,9 +1,11 @@
-import React from 'react'
+import ComingSoon from "../components/common/ComingSoon";
 
-function Settings() {
+export default function Carts() {
   return (
-    <div>Settings</div>
-  )
+    <ComingSoon
+      title="Shopping Carts"
+      icon="fa-solid fa-cart-shopping"
+      description="Inspect active shopping carts, review selected items, and monitor cart activity. Cart management will be implemented in a future update."
+    />
+  );
 }
-
-export default Settings

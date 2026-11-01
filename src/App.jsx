@@ -1,13 +1,8 @@
-import React from 'react'
+
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  return (
-    <div
-      className='text-red-800 text-center text-5xl'
-    >
-      App
-    </div>
-  )
+  return <AppRoutes />;
 }
 
-export default App
+export default App;

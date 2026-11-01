@@ -1,0 +1,157 @@
+:root {
+  /* Brand colors */
+  --nc-primary: #00B8DB;
+  --nc-primary-hover: #0092B8;
+  --nc-primary-soft: #E0F8FC;
+
+  /* Main light theme */
+  --nc-page: #F8FAFC;
+  --nc-card: #F7FCFF;
+  --nc-border: #E2E8F0;
+  --nc-text: #0F172B;
+  --nc-text-muted: #585C63;
+
+  /* Dark theme */
+  --nc-dark-navbar: #0F1729;
+  --nc-dark-card: #1A2338;
+  --nc-dark-border: #2A3550;
+  --nc-dark-muted: #8B95A8;
+  --nc-dark-page: #0B1120;
+
+  /* Status colors */
+  --nc-success: #00C950;
+  --nc-pending: #F0B100;
+  --nc-error: #FB2C36;
+
+  /* Typography */
+  --nc-font: "Roboto", sans-serif;
+
+  /* Border radius */
+  --nc-radius-sm: 6px;
+  --nc-radius-md: 10px;
+  --nc-radius-lg: 16px;
+  --nc-radius-xl: 24px;
+
+  /* Shadows */
+  --nc-shadow-card: 0 8px 30px rgb(15 23 43 / 8%);
+  --nc-shadow-hover: 0 14px 36px rgb(15 23 43 / 14%);
+
+  /* Transitions */
+  --nc-transition: 200ms ease;
+}
+
+/* Consistent box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Global typography */
+html {
+  font-family: var(--nc-font);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--nc-font);
+  background: var(--nc-page);
+  color: var(--nc-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Shared components for pages using normal CSS */
+.nc-card {
+  background: var(--nc-card);
+  border: 1px solid var(--nc-border);
+  border-radius: var(--nc-radius-lg);
+  box-shadow: var(--nc-shadow-card);
+}
+
+.nc-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: var(--nc-radius-md);
+  background: var(--nc-primary);
+  color: var(--nc-dark-navbar);
+  font: 500 14px var(--nc-font);
+  cursor: pointer;
+  transition:
+    background var(--nc-transition),
+    transform var(--nc-transition),
+    box-shadow var(--nc-transition);
+}
+
+.nc-button-primary:hover {
+  background: var(--nc-primary-hover);
+  transform: translateY(-1px);
+}
+
+.nc-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--nc-border);
+  border-radius: var(--nc-radius-md);
+  background: white;
+  color: var(--nc-text);
+  font: 400 14px var(--nc-font);
+  outline: none;
+  transition:
+    border-color var(--nc-transition),
+    box-shadow var(--nc-transition);
+}
+
+.nc-input:focus {
+  border-color: var(--nc-primary);
+  box-shadow: 0 0 0 3px rgb(0 184 219 / 15%);
+}
+
+.nc-muted {
+  color: var(--nc-text-muted);
+}
+
+.nc-status-success {
+  color: var(--nc-success);
+}
+
+.nc-status-pending {
+  color: var(--nc-pending);
+}
+
+.nc-status-error {
+  color: var(--nc-error);
+}
+
+
+/* Global layout reset for NexCart */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+html {
+  font-family: var(--nc-font);
+}
+
+body {
+  padding: 0;
+}
+
+/* Let each page control its own layout */
+#root {
+  max-width: none;
+  text-align: left;
+  
+}
