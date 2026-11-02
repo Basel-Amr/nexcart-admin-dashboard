@@ -1,33 +1,30 @@
-// Displays service status and version
 function SidebarFooter() {
   return (
-    <div className="shrink-0 border-t border-slate-800 p-3">
-      <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-2.5">
-        <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
+    <footer className="shrink-0 px-3 pb-4 pt-3">
+      {/* Dashboard status card */}
+      <div className="rounded-xl border border-(--nc-border-color) bg-(--nc-surface) p-3">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
 
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
+            <span className="text-xs font-medium text-(--nc-text-primary)">
+              Dashboard services
+            </span>
+          </div>
 
-          <span className="text-[11px] font-medium text-slate-300">
-            Dashboard services
-          </span>
-
-          <span className="ml-auto text-[9px] font-semibold text-emerald-400">
-            Ready
-          </span>
+          <span className="text-[10px] font-bold text-emerald-500">Ready</span>
         </div>
 
-        <p className="mt-1.5 text-[10px] leading-4 text-slate-500">
+        <p className="mt-2 text-[11px] leading-relaxed text-(--nc-text-secondary)">
           Your store management, all in one place.
         </p>
       </div>
 
-      <p className="mt-2 text-center text-[9px] tracking-wide text-slate-600">
-        NEXCART ADMIN · V1.0
+      {/* Version */}
+      <p className="mt-3 text-center text-[9px] font-medium uppercase tracking-wider text-(--nc-text-secondary) opacity-70">
+        NexCart Admin · V1.0
       </p>
-    </div>
+    </footer>
   );
 }
 

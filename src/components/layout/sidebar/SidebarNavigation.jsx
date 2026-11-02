@@ -1,81 +1,92 @@
-// Displays navigation groups
 import SidebarNavItem from "./SidebarNavItem";
 
 const navigationGroups = [
   {
-    label: "OVERVIEW",
+    label: "Overview",
     items: [
       {
-        label: "Dashboard",
+        name: "Dashboard",
+        path: "/",
         icon: "fa-solid fa-house",
-        to: "/",
         end: true,
       },
     ],
   },
   {
-    label: "STORE MANAGEMENT",
+    label: "Store Management",
     items: [
       {
-        label: "Customers",
+        name: "Customers",
+        path: "/customers",
         icon: "fa-solid fa-users",
-        to: "/customers",
       },
       {
-        label: "Products",
+        name: "Products",
+        path: "/products",
         icon: "fa-solid fa-box-open",
-        to: "/products",
       },
       {
-        label: "Add Product",
+        name: "Add Product",
+        path: "/products/new",
         icon: "fa-solid fa-circle-plus",
-        to: "/products/new",
-        highlight: true,
+        badge: "NEW",
       },
       {
-        label: "Orders",
+        name: "Orders",
+        path: "/orders",
         icon: "fa-solid fa-receipt",
-        to: "/orders",
       },
       {
-        label: "Carts",
+        name: "Carts",
+        path: "/carts",
         icon: "fa-solid fa-cart-shopping",
-        to: "/carts",
       },
     ],
   },
   {
-    label: "INSIGHTS & PREFERENCES",
+    label: "Insights & Preferences",
     items: [
       {
-        label: "Analytics",
+        name: "Analytics",
+        path: "/analytics",
         icon: "fa-solid fa-chart-line",
-        to: "/analytics",
       },
       {
-        label: "Settings",
+        name: "Settings",
+        path: "/settings",
         icon: "fa-solid fa-gear",
-        to: "/settings",
       },
     ],
   },
 ];
 
-function SidebarNavigation({ onClose }) {
+function SidebarNavigation({ closeSidebar }) {
   return (
     <nav
-      aria-label="Main navigation"
-      className="flex-1 space-y-5 overflow-y-auto px-3 py-4"
+      className="
+        min-h-0 flex-1
+        overflow-y-auto
+        px-3 pb-5 pt-3
+        [scrollbar-width:none]
+        [-ms-overflow-style:none]
+        [&::-webkit-scrollbar]:hidden
+      "
     >
       {navigationGroups.map((group) => (
-        <div key={group.label}>
-          <h2 className="mb-2 px-3 text-[9px] font-bold tracking-[0.16em] text-slate-500">
+        <div key={group.label} className="mb-7 last:mb-0">
+          {/* Navigation group heading */}
+          <h2 className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-(--nc-text-secondary)">
             {group.label}
           </h2>
 
-          <div className="space-y-1">
+          {/* Navigation items */}
+          <div className="space-y-1.5">
             {group.items.map((item) => (
-              <SidebarNavItem key={item.label} item={item} onClose={onClose} />
+              <SidebarNavItem
+                key={item.path}
+                item={item}
+                closeSidebar={closeSidebar}
+              />
             ))}
           </div>
         </div>
