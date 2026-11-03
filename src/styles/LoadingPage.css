@@ -1,0 +1,233 @@
+/* =========================================
+   NEXCART LOADING PAGE
+========================================= */
+
+.nc-loading-page {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 24px;
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(0, 184, 219, 0.09),
+      transparent 35%
+    ),
+    var(--nc-dark-page);
+  color: #f8fafc;
+}
+
+.nc-loading-glow {
+  position: absolute;
+  z-index: -1;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: rgba(0, 184, 219, 0.09);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.nc-loading-glow-one {
+  top: -150px;
+  left: -120px;
+}
+
+.nc-loading-glow-two {
+  right: -120px;
+  bottom: -160px;
+}
+
+.nc-loading-content {
+  display: flex;
+  width: 100%;
+  max-width: 440px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: nc-loading-appear 0.8s ease both;
+}
+
+/* Logo animation */
+
+.nc-loading-logo-wrapper {
+  position: relative;
+  display: flex;
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.nc-loading-logo {
+  display: flex;
+  width: 105px;
+  height: 105px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 184, 219, 0.22);
+  border-radius: 32px;
+  background: linear-gradient(
+    145deg,
+    rgba(26, 35, 56, 0.95),
+    rgba(15, 23, 41, 0.95)
+  );
+  box-shadow:
+    0 0 35px rgba(0, 184, 219, 0.13),
+    0 15px 40px rgba(0, 0, 0, 0.3);
+  animation: nc-loading-float 3s ease-in-out infinite;
+}
+
+.nc-loading-logo img {
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+}
+
+.nc-loading-orbit {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-top-color: var(--nc-primary);
+  border-right-color: rgba(0, 184, 219, 0.15);
+  border-radius: 50%;
+  animation: nc-loading-spin 2.5s linear infinite;
+}
+
+.nc-loading-title {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: #f8fafc;
+}
+
+.nc-loading-title span {
+  color: var(--nc-primary);
+}
+
+.nc-loading-subtitle {
+  margin-top: 7px;
+  color: var(--nc-dark-muted);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Progress */
+
+.nc-loading-progress {
+  width: 100%;
+  max-width: 270px;
+  height: 5px;
+  overflow: hidden;
+  margin-top: 42px;
+  border-radius: 50px;
+  background: rgba(139, 149, 168, 0.15);
+}
+
+.nc-loading-progress-fill {
+  width: 40%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 184, 219, 0.25),
+    var(--nc-primary),
+    #8cecff
+  );
+  box-shadow: 0 0 14px rgba(0, 184, 219, 0.55);
+  animation: nc-loading-progress 2s ease-in-out infinite;
+}
+
+.nc-loading-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--nc-dark-muted);
+  font-size: 13px;
+}
+
+.nc-loading-dot,
+.nc-notfound-label-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--nc-primary);
+  box-shadow: 0 0 12px var(--nc-primary);
+  animation: nc-loading-pulse 1.5s ease-in-out infinite;
+}
+
+.nc-loading-footer {
+  margin-top: 55px;
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+/* Animations */
+
+@keyframes nc-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nc-loading-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes nc-loading-progress {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+@keyframes nc-loading-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes nc-loading-appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nc-loading-content,
+  .nc-loading-logo,
+  .nc-loading-orbit,
+  .nc-loading-progress-fill,
+  .nc-loading-dot {
+    animation: none;
+  }
+}

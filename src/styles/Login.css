@@ -1,0 +1,205 @@
+/* =========================================
+   NEXCART LOGIN PAGE
+========================================= */
+
+.nc-login-page {
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(0, 184, 219, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 88% 82%,
+      rgba(0, 184, 219, 0.09),
+      transparent 30%
+    ),
+    var(--nc-dark-page);
+}
+
+/* Decorative background glow */
+
+.nc-login-glow {
+  position: absolute;
+  z-index: -1;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: rgba(0, 184, 219, 0.08);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.nc-login-glow-one {
+  top: -180px;
+  left: -130px;
+}
+
+.nc-login-glow-two {
+  right: -150px;
+  bottom: -190px;
+}
+
+/* Main card */
+
+.nc-login-card {
+  min-height: 760px;
+  background: var(--nc-dark-card);
+  border-color: rgba(139, 149, 168, 0.18);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.42),
+    0 0 50px rgba(0, 184, 219, 0.045);
+  animation: nc-login-appear 0.7s ease both;
+}
+
+/* Vertical divider between panels */
+
+.nc-login-panel-divider {
+  position: relative;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 3%,
+    rgba(0, 184, 219, 0.15) 15%,
+    rgba(0, 184, 219, 0.65) 50%,
+    rgba(0, 184, 219, 0.15) 85%,
+    transparent 97%
+  );
+}
+
+/* Soft glow around the divider */
+
+.nc-login-panel-divider::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 150px;
+  content: "";
+  transform: translate(-50%, -50%);
+  background: var(--nc-primary);
+  opacity: 0.28;
+  filter: blur(8px);
+  border-radius: 999px;
+}
+
+/* Left brand panel */
+
+.nc-login-left-panel {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 10% 10%,
+      rgba(0, 184, 219, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(145deg, #17243b 0%, var(--nc-dark-card) 55%, #111b30 100%);
+}
+
+/* Right form panel */
+
+.nc-login-right-panel {
+  position: relative;
+  background:
+    radial-gradient(
+      ellipse at 90% 0%,
+      rgba(0, 184, 219, 0.045),
+      transparent 38%
+    ),
+    var(--nc-dark-card);
+}
+
+/* Existing brand divider */
+
+.nc-brand-divider {
+  width: 64px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--nc-primary),
+    rgba(0, 184, 219, 0.15)
+  );
+  box-shadow: 0 0 14px rgba(0, 184, 219, 0.35);
+}
+
+/* Login inputs */
+
+.nc-login-input-wrap {
+  min-height: 52px;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease;
+}
+
+.nc-login-input-wrap:focus-within {
+  border-color: var(--nc-primary);
+  box-shadow: 0 0 0 3px rgba(0, 184, 219, 0.09);
+}
+
+/* Submit button */
+
+.nc-login-submit {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 7px 22px rgba(0, 184, 219, 0.16);
+}
+
+.nc-login-submit:hover {
+  box-shadow: 0 10px 28px rgba(0, 184, 219, 0.28);
+}
+
+/* Google button */
+
+.nc-google-button {
+  transition:
+    border-color 200ms ease,
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+/* Entrance animation */
+
+@keyframes nc-login-appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive adjustments */
+
+@media (max-width: 1023px) {
+  .nc-login-card {
+    min-height: auto;
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nc-login-page {
+    padding: 12px;
+  }
+
+  .nc-login-card {
+    border-radius: 20px;
+  }
+
+  .nc-login-right-panel {
+    padding: 28px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nc-login-card {
+    animation: none;
+  }
+}
