@@ -168,6 +168,7 @@ function Users() {
       className="
         w-full min-w-0 min-h-full
         space-y-6
+        pt-6
         bg-transparent
         text-[var(--nc-text-primary)]
         transition-colors duration-200

@@ -1,2 +1,34 @@
 @import "tailwindcss";
 @import "./styles/theme.css";
+/* =========================================
+   USER MANAGEMENT HEADER
+========================================= */
+
+.nc-user-management {
+  animation: nc-user-header-enter 0.55s ease both;
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 184, 219, 0.015);
+}
+
+.nc-user-management:hover {
+  border-color: rgba(0, 184, 219, 0.3);
+}
+
+@keyframes nc-user-header-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nc-user-management {
+    animation: none;
+  }
+}
