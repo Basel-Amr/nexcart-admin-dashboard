@@ -8,11 +8,16 @@ function AdminProfile({ adminName = "AdminText" }) {
   const { isDark } = useTheme();
 
   const handleLogout = () => {
+    // Remove the authentication session
+    sessionStorage.removeItem("nexcart-demo-auth");
+    sessionStorage.removeItem("nexcart-demo-user");
     sessionStorage.removeItem("adminName");
-    sessionStorage.removeItem("isAuthenticated");
 
+    // Close the profile dropdown
     setIsOpen(false);
-    navigate("/login");
+
+    // Navigate to login page
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -61,6 +66,7 @@ function AdminProfile({ adminName = "AdminText" }) {
             </p>
           </div>
 
+          {/* Logout */}
           <button
             type="button"
             onClick={handleLogout}

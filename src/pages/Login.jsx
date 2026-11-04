@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { getUsers } from "../data/users";
 
@@ -10,6 +10,7 @@ import "../styles/Login.css";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     email: localStorage.getItem("nexcart-remembered-email") || "",
@@ -23,6 +24,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
+  // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -34,6 +36,7 @@ function Login() {
     setError("");
   };
 
+  // Handle login
   const handleSubmit = (event) => {
     event.preventDefault();
     setError("");
@@ -46,8 +49,10 @@ function Login() {
       return;
     }
 
+    // Get users from localStorage
     const users = getUsers();
 
+    // Find matching admin
     const admin = users.find(
       (user) =>
         user.role === "admin" &&
@@ -60,12 +65,14 @@ function Login() {
       return;
     }
 
+    // Remember email
     if (rememberMe) {
       localStorage.setItem("nexcart-remembered-email", email);
     } else {
       localStorage.removeItem("nexcart-remembered-email");
     }
 
+    // Save logged-in admin
     const loggedInUser = {
       id: admin.id,
       username: admin.username,
@@ -73,13 +80,18 @@ function Login() {
       role: admin.role,
     };
 
+    // Create authentication session
     sessionStorage.setItem("nexcart-demo-auth", "true");
     sessionStorage.setItem("nexcart-demo-user", JSON.stringify(loggedInUser));
     sessionStorage.setItem("adminName", admin.username);
 
-    navigate("/", { replace: true });
+    // Redirect to requested page or dashboard
+    const redirectTo = location.state?.from?.pathname || "/dashboard";
+
+    navigate(redirectTo, { replace: true });
   };
 
+  // Google login placeholder
   const handleGoogleLogin = () => {
     setError("Google sign-in is not configured yet.");
   };
